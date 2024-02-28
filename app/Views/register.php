@@ -23,10 +23,6 @@
             <link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/morrisjs/morris.min.css">
             <link rel="stylesheet" href="<?= base_url('assets') ?>/css/style.min.css">
 
-        <!-- Function -->
-
-            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
     </head>
 
     <body class="theme-blush">
@@ -39,12 +35,12 @@
 
                     <div class="col-lg-4 col-sm-12">
 
-                        <form class="card auth_form" action="<?= base_url('/home/aksi_login/')?>" method="POST">
+                        <form class="card auth_form" action="<?= base_url('/home/aksi_register')?>" method="post">
     
                             <div class="header">
 
                                 <img class="logo" src="<?= base_url('assets') ?>/images/logo.svg" alt="">
-                                <h5>Log in</h5>
+                                <h5>Register</h5>
 
                             </div>
 
@@ -64,19 +60,29 @@
 
                                 <div class="input-group mb-3">
 
-                                    <input type="password" class="form-control" placeholder="Password" name="password" required>
+                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
 
                                     <div class="input-group-append">
 
-                                        <span class="input-group-text"><a href="forgot-password.html" class="forgot" title="Forgot Password"><i class="zmdi zmdi-lock"></i></a></span>
+                                        <span class="input-group-text"><i class="zmdi zmdi-lock"></i></a></span>
 
                                     </div>
 
                                 </div>
 
-                                <div class="g-recaptcha" data-sitekey="6Le4D6snAAAAAHKAJFOOLbLc17nMTBTF6Ze12hWG"></div>
+                                <div class="input-group mb-3">
 
-                                    <button type="submit" class="btn btn-primary btn-block waves-effect waves-light" id="login">SIGN IN</button>
+                                    <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
+
+                                    <div class="input-group-append">
+
+                                        <span class="input-group-text"><i class="zmdi zmdi-lock"></i></a></span>
+
+                                    </div>
+
+                                </div>
+
+                                    <button type="submit" class="btn btn-primary btn-block waves-effect waves-light" id="login">Confirm</button>
 
                                 <div class="signin_with mt-3"></div>
 
@@ -84,9 +90,12 @@
 
                         </form>
 
-                        <a href="/home/register_user" class="d-flex justify-content-center align-items-center">
-                            <button class="btn btn-md btn-secondary btn-block waves-effect waves-light">REGISTER</button>
+                        <a href="/home/">
+                        
+                            <button type="submit" class="btn btn-danger btn-block waves-effect waves-light" id="login">Back</button>
+                            
                         </a>
+                            
     
                     </div>
 
@@ -114,6 +123,30 @@
         <!-- Custom JS -->
 
             <script>
+
+                document.addEventListener('DOMContentLoaded', function() {
+
+                    var password = document.getElementById('password');
+                    var confirm_password = document.getElementById('confirm_password');
+
+                    function validatePassword() {
+
+                        if (password.value != confirm_password.value) {
+
+                            confirm_password.setCustomValidity('Please make sure its the correct password');
+
+                        } else {
+
+                            confirm_password.setCustomValidity('');
+
+                        }
+
+                    }
+
+                    password.addEventListener('change', validatePassword);
+                    confirm_password.addEventListener('keyup', validatePassword);
+
+                });
 
                 $(document).on('click', '#login', function() {
 

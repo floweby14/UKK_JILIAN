@@ -92,6 +92,54 @@ class Home extends BaseController{
 
     }
 
+    public function register_user() {
+
+        if (session() -> get('id') == NULL) {
+
+            echo view('register');
+
+        } else if (session() -> get('id') > 0) {
+
+            return redirect() -> to('/home/user');
+
+        }
+
+    }
+
+    public function aksi_register() {
+
+        if (session() -> get('id') == NULL) {
+
+            $Schema = new Schema();
+
+                $username = $this->request->getPost('username');
+                $password = $this->request->getPost('password');
+
+            $user = array(
+                'username'=> $username,
+                'password'=> md5($password),
+                'level'=> '2',
+            );
+            
+                $Schema -> insert_data('user', $user);
+
+            $where = array('username' => $username);
+            $_fetch = $Schema -> getWhere2('user', $where);
+
+            $_id = $_fetch['id_user'];
+
+                $Schema -> insert_data('petugas', array('user' => $_id));
+
+            return redirect()->to('/home/');
+
+        } else {
+
+            return redirect()->to('/home/');
+
+        }
+
+    }
+
 
     public function pelanggan() {
 
@@ -395,29 +443,26 @@ class Home extends BaseController{
 
     public function penjualan() {
 
-        if (session() -> get('id') == NULL) {
+        if (in_array(session() -> get('level'), [1])) {
 
-            return redirect() -> to('/home/penjualan');
+            $Schema = new schema();
 
-        } else if (session() -> get('id') > 0) {
-
-            $Schema = new Schema();
-
-                    // Fetching data
-
-                    // $on = 'user.level = level.id_level';
-
-                    // $_fetch['pemasukanData'] = $Schema -> visual_table_join2('user', 'level', $on);
-            $_fetch['penjualanData'] = $Schema -> visual_table('penjualan');
+                $on = 'penjualan.pelanggan = pelanggan.id_pelanggan';
+                $_fetch['penjualanData'] = $Schema -> visual_join2('penjualan', 'pelanggan', $on);
 
             echo view('layout/_heading');
-            echo view('pages/data_penjualan', $_fetch);
             echo view('layout/_menu');
+            echo view('pages/data_penjualan', $_fetch);
             echo view('layout/_footer');
 
+        } else {
+
+            return redirect() -> to('/home/');
+
         }
-        
+
     }
+
 
     public function tambah_data_penjualan() {
 

@@ -16,7 +16,7 @@ class Schema extends Model {
 
 		public function visual_table_join2($table1, $table2, $on) {
 
-			return $this -> db -> table($table1) -> join($table2, $on, 'left') -> get() -> getResult();
+			return $this -> db -> table($table1) -> join($table2, $on) -> get() -> getResult();
 		
 		}
 

@@ -48,7 +48,7 @@
 
                                         <th>No</th>
 
-                                        <!-- <th>Nama Pelanggan</th> -->
+                                        <th>Nama Pelanggan</th>
                                         <th>Nama Produk</th>
                                         <th>Quantity</th>
                                         <th>Subtotal</th>

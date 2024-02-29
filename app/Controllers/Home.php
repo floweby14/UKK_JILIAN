@@ -440,7 +440,8 @@ class Home extends BaseController{
             $Schema = new schema();
 
                 $on = 'penjualan.id_pelanggan = pelanggan.id_pelanggan';
-                $_fetch['penjualanData'] = $Schema -> visual_table_join2('penjualan', 'pelanggan', $on);
+                $on2 = 'penjualan.id_produk = produk.id_produk';
+                $_fetch['penjualanData'] = $Schema -> visual_table_join3('penjualan', 'pelanggan', 'produk', $on, $on2);
                 // $on2 = 'penjualan.id_produk = produk.id_produk';
                 // $_fetch['penjualanData'] = $Schema->visual_table_join3('penjualan', 'pelanggan', 'produk', $on, $on2); 
            
@@ -484,26 +485,26 @@ class Home extends BaseController{
         if (in_array(session() -> get('level'), [1])) {
 
             $Schema = new Schema();
-            $nama = $this->request->getPost('nama');
+            // $nama = $this->request->getPost('nama');
             $nama_produk = $this->request->getPost('nama_produk');
-            $harga = $this->request->getPost('harga');
+            // $harga = $this->request->getPost('harga');
             $quantity = $this->request->getPost('quantity');
             $subtotal = $this->request->getPost('subtotal');
             $tanggal_penjualan = $this->request->getPost('tanggal_penjualan');
-            $bayar = $this->request->getPost('bayar');
-            $kembalian = $this->request->getPost('kembalian');
+            // $bayar = $this->request->getPost('bayar');
+            // $kembalian = $this->request->getPost('kembalian');
 
 
             
             $penjualanData = array(
-                'nama' => $nama,
+                // 'nama' => $nama,
                 'nama_produk' => $nama_produk,
-                'harga' => $harga, 
+                // 'harga' => $harga, 
                 'quantity' => $quantity, 
                 'subtotal' => $subtotal,                
                 'tanggal_penjualan' => date('Y,m-d H:i:s'),
-                'bayar' => $bayar, 
-                'kembalian' => $kembalian,                
+                // 'bayar' => $bayar, 
+                // 'kembalian' => $kembalian,                
                
 
                 
@@ -520,77 +521,77 @@ class Home extends BaseController{
         
     }
 
-    public function edit_data_penjualan($id) {
+    // public function edit_data_penjualan($id) {
 
-        if(in_array(session() -> get('level'), [1])) {
+    //     if(in_array(session() -> get('level'), [1])) {
 
-            $Schema = new Schema();
-            $id_penjualan = array('id_penjualan' => $id);
-            $_fetch['penjualanData'] = $Schema -> getWhere('penjualan', $id_penjualan);
+    //         $Schema = new Schema();
+    //         $id_penjualan = array('id_penjualan' => $id);
+    //         $_fetch['penjualanData'] = $Schema -> getWhere('penjualan', $id_penjualan);
 
-            echo view('layout/_heading');
-            echo view('layout/_menu');
-            echo view('forms/edit_data_penjualan', $_fetch);
-            echo view('layout/_footer');
+    //         echo view('layout/_heading');
+    //         echo view('layout/_menu');
+    //         echo view('forms/edit_data_penjualan', $_fetch);
+    //         echo view('layout/_footer');
 
-        } else {
+    //     } else {
 
-            return redirect()->to('/home/');
+    //         return redirect()->to('/home/');
 
-        }
+    //     }
 
-    }
+    // }
 
-    public function aksi_edit_data_penjualan() {
+    // public function aksi_edit_data_penjualan() {
 
-        if (in_array(session() -> get('level'), [1])) {
+    //     if (in_array(session() -> get('level'), [1])) {
 
-            $Schema = new Schema();
-            $nama_produk = $this->request->getPost('nama_produk');
-            $harga = $this->request->getPost('harga');
-            $tanggal_penjualan = $this->request->getPost('tanggal_penjualan');
+    //         $Schema = new Schema();
+    //         $nama_produk = $this->request->getPost('nama_produk');
+    //         $harga = $this->request->getPost('harga');
+    //         $tanggal_penjualan = $this->request->getPost('tanggal_penjualan');
 
-            $where = array('id_pelanggan' => $id_pelanggan);
-            $pelangganData = array(
-                'nama_produk' => $nama_produk,
-                'harga' => $harga,                
-                'tanggal_penjualan' => $tanggal_penjualan,
+    //         $where = array('id_pelanggan' => $id_pelanggan);
+    //         $pelangganData = array(
+    //             'nama_produk' => $nama_produk,
+    //             'harga' => $harga,                
+    //             'tanggal_penjualan' => $tanggal_penjualan,
 
-            );
+    //         );
 
-            if (in_array(session() -> get('level'), [1])) {
+    //         if (in_array(session() -> get('level'), [1])) {
 
-                $Schema -> edit_data('pelanggan', $pelangganData, $where);
+    //             $Schema -> edit_data('pelanggan', $pelangganData, $where);
 
-            }
+    //         }
 
-            return redirect()->to('/home/pelanggan');
+    //         return redirect()->to('/home/pelanggan');
 
-        } else {
+    //     } else {
 
-            return redirect()->to('/home/');
+    //         return redirect()->to('/home/');
 
-        }
+    //     }
 
-    }
+    // }
 
-    public function hapus_data_penjualan($id)
-    {
-        if (in_array(session() -> get('level'), [1])) {
+    // public function hapus_data_penjualan($id)
+    // {
+    //     if (in_array(session() -> get('level'), [1])) {
 
-            $Model = new Schema();
+    //         $Model = new Schema();
 
-            $where = array('id_pelanggan'=>$id);
-            $Model->delete_data('pelanggan',$where);
+    //         $where = array('id_pelanggan'=>$id);
+    //         $Model->delete_data('pelanggan',$where);
 
-            return redirect()->to('/Home/pelanggan/');
+    //         return redirect()->to('/Home/pelanggan/');
 
-        }else{
+    //     }else{
 
-            return redirect()->to('/Home');
-        }
+    //         return redirect()->to('/Home');
+    //     }
 
-    }
+    // }
 
     
 }

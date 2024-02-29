@@ -38,6 +38,25 @@
 
                         <form class="form-horizontal" action="<?= base_url('/home/aksi_tambah_data_penjualan')?>" method="POST" enctype="multipart/form-data">
 
+                            <div class="row clearfix">
+
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+
+                                    <label for="created_at">Tanggal Penjualan</label>
+
+                                </div>
+
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+
+                                    <div class="form-group">
+
+                                        <input type="datetime-local" name="tanggal_penjualan" id="tanggal_penjualan" placeholder="Tanggal Penjualan" class="form-control">
+                                        
+                                    </div>
+
+                                </div>
+                                
+                            </div>
 
                             <div class="row clearfix">
 
@@ -78,7 +97,7 @@
 
                                     <div class="form-group">
 
-                                        <select class="form_control" name="nama">
+                                        <select class="form_control" name="nama_produk">
                                             <option disabled selected>Pilih Produk</option>
                                             <?php foreach($produkData as $data) { ?>
                                             
@@ -135,25 +154,6 @@
                                 
                             </div>
 
-                            <div class="row clearfix">
-
-                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
-
-                                    <label for="created_at">Tanggal Penjualan</label>
-
-                                </div>
-
-                                <div class="col-lg-10 col-md-10 col-sm-8">
-
-                                    <div class="form-group">
-
-                                        <input type="datetime-local" name="tanggal_penjualan" id="tanggal_penjualan" placeholder="Tanggal Penjualan" class="form-control">
-                                        
-                                    </div>
-
-                                </div>
-                                
-                            </div>
 
                             <div class="row clearfix">
 
@@ -168,26 +168,6 @@
                                     <div class="form-group">
 
                                         <input type="text" name="subtotal" id="subtotal" placeholder="Subtotal" class="form-control">
-                                        
-                                    </div>
-
-                                </div>
-                                
-                            </div>
-
-                             <div class="row clearfix">
-
-                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
-
-                                    <label for="created_at">Tanggal Penjualan</label>
-
-                                </div>
-
-                                <div class="col-lg-10 col-md-10 col-sm-8">
-
-                                    <div class="form-group">
-
-                                        <input type="datetime-local" name="tanggal_penjualan" id="tanggal_penjualan" placeholder="Tanggal Penjualan" class="form-control">
                                         
                                     </div>
 
@@ -267,6 +247,32 @@
                                 <button type="submit" class="btn btn-md btn-round btn-success">Submit</button>
                                 
                             </div>
+
+                            <script>
+    // Fungsi untuk menghitung kembalian
+    function hitungKembalian() {
+        // Ambil nilai subtotal
+        const subtotal = parseFloat(document.getElementById('subtotal').value) || 0;
+
+        // Ambil nilai jumlah yang dibayar
+        const jumlahDibayar = parseFloat(document.getElementById('bayar').value) || 0;
+
+        // Hitung kembalian
+        const kembalian = jumlahDibayar - subtotal;
+
+        // Perbarui nilai input kembalian
+        document.getElementById('kembalian').value = kembalian;
+    }
+
+    // Tambahkan event listener untuk perubahan nilai pada input subtotal dan input jumlah yang dibayar
+    document.getElementById('subtotal').addEventListener('input', hitungKembalian);
+    document.getElementById('bayar').addEventListener('input', hitungKembalian);
+    
+</script>
+
+
+
+
 
                         </form>
 

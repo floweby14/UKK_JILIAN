@@ -41,8 +41,6 @@
 
                                         <th>No</th>
                                         <th>Username</th>
-                                        <th>Nama</th>
-                                        <th>Level</th>
 
                                     </tr>
 
@@ -56,8 +54,7 @@
 
                                             <td><?php echo $no++ ?></td>
                                             <td><?php echo $data -> username ?></td>
-                                            <td><?php echo $data -> nama_user ?></td>
-                                            <td><?php echo ucwords($data -> level) ?></td>
+
                                             
 
 

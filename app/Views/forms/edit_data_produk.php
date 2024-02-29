@@ -8,13 +8,13 @@
 
             <div class="col-lg-7 col-md-6 col-sm-12">
 
-                <h2>Edit Data Pelanggan</h2>
+                <h2>Edit Data Produk</h2>
 
             </div>
 
             <div class="col-lg-5 col-md-6 col-sm-12">
 
-                <a href="/home/data_pelanggan">
+                <a href="/home/data_produk">
                     
                     <button class="btn btn-secondary btn-icon float-right" type="buttin"><i class="zmdi zmdi-chevron-left"></i></button>
 
@@ -36,15 +36,15 @@
 
                     <div class="body">
 
-                        <form class="form-horizontal" action="<?= base_url('/home/aksi_edit_data_pelanggan')?>" method="POST">
+                        <form class="form-horizontal" action="<?= base_url('/home/aksi_edit_data_produk')?>" method="POST">
 
-                        <input type="hidden" name="id_pelanggan" value="<?php echo $pelangganData->id_pelanggan ?>">
+                        <input type="hidden" name="id_produk" value="<?php echo $produkData->id_produk ?>">
 
                             <div class="row clearfix">
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="nama">Nama <span style="color: #ff0000;">*</span></label>
+                                    <label for="nama_produk">Nama Produk<span style="color: #ff0000;">*</span></label>
 
                                 </div>
 
@@ -52,7 +52,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" value="<?php echo $pelangganData -> nama ?>" name="nama" id="nama" placeholder="Nama " class="form-control" required>
+                                        <input type="text" value="<?php echo $produkData -> nama_produk ?>" name="nama_produk" id="nama_produk" placeholder="Nama Produk" class="form-control" required>
 
                                     </div>
 
@@ -65,7 +65,7 @@
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="alamat">Alamat <span style="color: #ff0000;">*</span></label>
+                                    <label for="harga">Harga <span style="color: #ff0000;">*</span></label>
 
                                 </div>
 
@@ -73,7 +73,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" value="<?php echo  $pelangganData -> alamat ?>" name="alamat" id="alamat" placeholder="Alamat" class="form-control" required>
+                                        <input type="text" value="<?php echo  $produkData -> harga ?>" name="harga" id="harga" placeholder="Harga" class="form-control" required>
 
                                     </div>
 
@@ -85,7 +85,7 @@
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="no_telpon">No Telepon <span style="color: #ff0000;">*</span></label>
+                                    <label for="stok">Stok <span style="color: #ff0000;">*</span></label>
 
                                 </div>
 
@@ -93,7 +93,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" value="<?php echo  $pelangganData -> no_telpon ?>" name="no_telpon" id="no_telpon" placeholder="No Telepon" class="form-control" required>
+                                        <input type="text" value="<?php echo  $produkData -> stok ?>" name="stok" id="stok" placeholder="Stok" class="form-control" required>
 
                                     </div>
 
@@ -113,7 +113,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="datetime-local" value="<?php echo  $pelangganData -> created_at ?>" name="created_at" id="created_at" placeholder="Created At" class="form-control" required>
+                                        <input type="datetime-local" value="<?php echo  $produkData -> created_at ?>" name="created_at" id="created_at" placeholder="Created At" class="form-control" required>
 
                                     </div>
 

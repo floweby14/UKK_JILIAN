@@ -239,39 +239,35 @@ class Home extends BaseController{
 
     public function aksi_edit_data_pelanggan() {
 
-        if (in_array(session() -> get('level'), [1])) {
+        if (in_array(session()->get('level'), [1])) {
 
             $Schema = new Schema();
+            $id_pelanggan = $this->request->getPost('id_pelanggan'); // Ambil nilai id_pelanggan dari form
             $nama = $this->request->getPost('nama');
             $alamat = $this->request->getPost('alamat');
             $no_telpon = $this->request->getPost('no_telpon');
             $created_at = $this->request->getPost('created_at');
-
-
+    
+            // Tentukan kondisi WHERE berdasarkan id_pelanggan
             $where = array('id_pelanggan' => $id_pelanggan);
             $pelangganData = array(
                 'nama' => $nama,
                 'alamat' => $alamat,
                 'no_telpon' => $no_telpon,
                 'created_at' => date('Y,m-d H:i:s'),
-
             );
-
-            if (in_array(session() -> get('level'), [1])) {
-
-                $Schema -> edit_data('pelanggan', $pelangganData, $where);
-
+    
+            // Lakukan pembaruan data hanya jika level sesuai
+            if (in_array(session()->get('level'), [1])) {
+                $Schema->edit_data('pelanggan', $pelangganData, $where);
             }
-
+    
             return redirect()->to('/home/pelanggan');
-
         } else {
-
             return redirect()->to('/home/');
-
         }
-
     }
+    
 
     public function hapus_data_pelanggan($id)
     {
@@ -371,12 +367,12 @@ class Home extends BaseController{
         if(in_array(session() -> get('level'), [1])) {
 
             $Schema = new Schema();
-            $id_pelanggan = array('id_pelanggan' => $id);
-            $_fetch['pelangganData'] = $Schema -> getWhere('pelanggan', $id_pelanggan);
+            $id_produk = array('id_produk' => $id);
+            $_fetch['produkData'] = $Schema -> getWhere('produk', $id_produk);
 
             echo view('layout/_heading');
             echo view('layout/_menu');
-            echo view('forms/edit_data_pelanggan', $_fetch);
+            echo view('forms/edit_data_produk', $_fetch);
             echo view('layout/_footer');
 
         } else {
@@ -389,39 +385,35 @@ class Home extends BaseController{
 
     public function aksi_edit_data_produk() {
 
-        if (in_array(session() -> get('level'), [1])) {
+        if (in_array(session()->get('level'), [1])) {
 
             $Schema = new Schema();
-            $nama = $this->request->getPost('nama');
-            $alamat = $this->request->getPost('alamat');
-            $no_telpon = $this->request->getPost('no_telpon');
+            $id_produk = $this->request->getPost('id_produk'); // Ambil nilai id_pelanggan dari form
+            $nama_produk = $this->request->getPost('nama_produk');
+            $harga = $this->request->getPost('harga');
+            $stok = $this->request->getPost('stok');
             $created_at = $this->request->getPost('created_at');
-
-
-            $where = array('id_pelanggan' => $id_pelanggan);
-            $pelangganData = array(
-                'nama' => $nama,
-                'alamat' => $alamat,
-                'no_telpon' => $no_telpon,
+    
+            // Tentukan kondisi WHERE berdasarkan id_pelanggan
+            $where = array('id_produk' => $id_produk);
+            $produkData = array(
+                'nama_produk' => $nama_produk,
+                'harga' => $harga,
+                'stok' => $stok,
                 'created_at' => date('Y,m-d H:i:s'),
-
             );
-
-            if (in_array(session() -> get('level'), [1])) {
-
-                $Schema -> edit_data('pelanggan', $pelangganData, $where);
-
+    
+            // Lakukan pembaruan data hanya jika level sesuai
+            if (in_array(session()->get('level'), [1])) {
+                $Schema->edit_data('produk', $produkData, $where);
             }
-
-            return redirect()->to('/home/pelanggan');
-
+    
+            return redirect()->to('/home/produk');
         } else {
-
             return redirect()->to('/home/');
-
         }
-
     }
+
 
     public function hapus_data_produk($id)
     {
@@ -447,9 +439,11 @@ class Home extends BaseController{
 
             $Schema = new schema();
 
-                $on = 'penjualan.pelanggan = pelanggan.id_pelanggan';
-                $_fetch['penjualanData'] = $Schema -> visual_join2('penjualan', 'pelanggan', $on);
-
+                $on = 'penjualan.id_pelanggan = pelanggan.id_pelanggan';
+                $_fetch['penjualanData'] = $Schema -> visual_table_join2('penjualan', 'pelanggan', $on);
+                // $on2 = 'penjualan.id_produk = produk.id_produk';
+                // $_fetch['penjualanData'] = $Schema->visual_table_join3('penjualan', 'pelanggan', 'produk', $on, $on2); 
+           
             echo view('layout/_heading');
             echo view('layout/_menu');
             echo view('pages/data_penjualan', $_fetch);
@@ -460,7 +454,6 @@ class Home extends BaseController{
             return redirect() -> to('/home/');
 
         }
-
     }
 
 
@@ -469,10 +462,13 @@ class Home extends BaseController{
         if(in_array(session() -> get('level'), [1])) {
 
             $Schema = new Schema();
+
+            $_fetch['pelangganData'] = $Schema -> visual_table('pelanggan');
+            $_fetch['produkData'] = $Schema -> visual_table('produk');
             
             echo view('layout/_heading');
             echo view('layout/_menu');
-            echo view('forms/tambah_data_penjualan');
+            echo view('forms/tambah_data_penjualan', $_fetch);
             echo view('layout/_footer');
 
         } else {
@@ -488,6 +484,7 @@ class Home extends BaseController{
         if (in_array(session() -> get('level'), [1])) {
 
             $Schema = new Schema();
+            $nama = $this->request->getPost('nama');
             $nama_produk = $this->request->getPost('nama_produk');
             $harga = $this->request->getPost('harga');
             $quantity = $this->request->getPost('quantity');
@@ -499,6 +496,7 @@ class Home extends BaseController{
 
             
             $penjualanData = array(
+                'nama' => $nama,
                 'nama_produk' => $nama_produk,
                 'harga' => $harga, 
                 'quantity' => $quantity, 

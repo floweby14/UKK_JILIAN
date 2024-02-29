@@ -18,7 +18,7 @@
 
                 <a href="/home/tambah_data_penjualan" style="position: absolute; right: 10px;">
                 
-                    <button class="btn btn-md btn-primary"><i class="zmdi zmdi-plus mr-3"></i>Tambah Data</button>
+                    <button class="btn btn-md btn-primary"><i class="zmdi zmdi-plus mr-3"></i>Transaksi</button>
 
                 </a>
 
@@ -50,9 +50,11 @@
 
                                         <th>Nama Pelanggan</th>
                                         <th>Nama Produk</th>
-                                        <th>Jumlah Produk</th>
+                                        <th>Quantity</th>
                                         <th>Subtotal</th>
-                                        <th>Action</th>
+                                        <th>Tanggal Penjualan</th>
+
+                                        <!-- <th>Action</th> -->
 
                                     </tr>
 
@@ -65,12 +67,15 @@
                                         <tr align="center">
 
                                             <td><?php echo $no++ ?></td>
-                                            <td><?php echo ucwords($data -> nama_pelanggan) ?></td>
+                                            <td><?php echo ucwords($data -> nama) ?></td>
                                             <td><?php echo ucwords($data -> nama_produk) ?></td>
+                                            <td><?php echo ucwords($data -> quantity) ?></td>
                                             <td><?php echo 'Rp. ' . number_format((float) $data->subtotal, 0, ',', '.') ?></td>
+                                            <td><?php echo ucwords($data -> tanggal_penjualan) ?></td>
+
                                             <td>
-                                            <a href="<?=base_url('/home/edit_data_produk/'.$data->id_produk)?>"><button class="btn btn-primary">Edit</button></a>
-                                            <a href="<?=base_url('/home/hapus_data_produk/'.$data->id_produk)?>"><button class="btn btn-danger">Delete</button></a>
+                                            <!-- <a href="<?=base_url('/home/edit_data_penjualan/'.$data->id_penjualan)?>"><button class="btn btn-primary">Edit</button></a>
+                                            <a href="<?=base_url('/home/hapus_data_penjualan/'.$data->id_penjualan)?>"><button class="btn btn-danger">Delete</button></a> -->
                                         </td>
 
                                         </tr>

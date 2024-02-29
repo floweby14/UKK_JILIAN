@@ -22,7 +22,7 @@ class Schema extends Model {
 
 		public function visual_table_join3($table1, $table2, $table3, $on1, $on2) {
 
-			return $this -> db -> table($table1) -> join($table2, $on1, 'left') -> join($table3, $on2, 'left') -> get() -> getResult();
+			return $this -> db -> table($table1) -> join($table2, $on1, 'left') -> join($table3, $on2) -> get() -> getResult();
 			
 		}
 

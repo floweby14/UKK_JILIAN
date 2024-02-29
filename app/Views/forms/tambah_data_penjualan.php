@@ -38,11 +38,12 @@
 
                         <form class="form-horizontal" action="<?= base_url('/home/aksi_tambah_data_penjualan')?>" method="POST" enctype="multipart/form-data">
 
+
                             <div class="row clearfix">
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="nama_produk">Nama Produk</label>
+                                    <label for="nama">Nama Pelanggan</label>
 
                                 </div>
 
@@ -50,13 +51,49 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" name="nama_produk" id="nama_produk" placeholder="Nama Produk" class="form-control">
+                                        <select class="form_control" name="nama">
+                                            <option disabled selected>Pilih Pelanggan</option>
+                                            <?php foreach($pelangganData as $data) { ?>
+                                            
+                                            <option value="<?php echo $data -> id_pelanggan ?>"><?php echo $data -> nama ?></option>
+                                        <?php } ?>
+
+                                            </select>
                                         
                                     </div>
 
                                 </div>
                                 
                             </div>
+
+                            <div class="row clearfix">
+
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+
+                                    <label for="nama">Nama Produk</label>
+
+                                </div>
+
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+
+                                    <div class="form-group">
+
+                                        <select class="form_control" name="nama">
+                                            <option disabled selected>Pilih Produk</option>
+                                            <?php foreach($produkData as $data) { ?>
+                                            
+                                            <option value="<?php echo $data -> id_produk ?>"><?php echo $data -> nama_produk ?></option>
+                                        <?php } ?>
+
+                                            </select>
+                                        
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+
+                            
 
                             <div class="row clearfix">
 
@@ -102,6 +139,26 @@
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
+                                    <label for="created_at">Tanggal Penjualan</label>
+
+                                </div>
+
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+
+                                    <div class="form-group">
+
+                                        <input type="datetime-local" name="tanggal_penjualan" id="tanggal_penjualan" placeholder="Tanggal Penjualan" class="form-control">
+                                        
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+
+                            <div class="row clearfix">
+
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+
                                     <label for="subtotal">Subtotal</label>
 
                                 </div>
@@ -118,11 +175,11 @@
                                 
                             </div>
 
-                            <div class="row clearfix">
+                             <div class="row clearfix">
 
                                 <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
 
-                                    <label for="tanggal_penjualan">Tanggal</label>
+                                    <label for="created_at">Tanggal Penjualan</label>
 
                                 </div>
 

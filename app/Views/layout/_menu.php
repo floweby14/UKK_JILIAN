@@ -42,7 +42,7 @@
                     <li class="active"><a href="/home/pelanggan"><i class="fa-solid fa-users"></i><span>Data Pelanggan</span></a></li>
                     <li class="active"><a href="/home/produk"><i class="fa-solid fa-basket-shopping"></i><span>Data Produk</span></a></li>
                     <li class="active"><a href="/home/penjualan"><i class="fa-solid fa-cart-shopping"></i><span>Data Penjualan</span></a></li>
-                    <li class="active"><a href="/home/penjualan"><i class="fa-solid fa-cart-plus"></i><span>Detail Penjualan</span></a></li>
+                    <!-- <li class="active"><a href="/home/penjualan"><i class="fa-solid fa-cart-plus"></i><span>Detail Penjualan</span></a></li> -->
                     <li class="active"><a href="/home/logout"><i class="fas fa-power-off"></i><span>Logout</span></a></li>
             
 

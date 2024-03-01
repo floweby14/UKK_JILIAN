@@ -8,7 +8,7 @@
 
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <a href="<?=base_url('kasir/cetak_invoice/' . $id_penjualan)?>" class="btn btn-success"><i class="faj-button fa-regular fa-receipt"></i>Cetak Invoice</a>
+                            <a href="<?=base_url('kasir/cetak_invoice/' . $id_penjualan)?>" class="btn btn-success"><i class="fa-solid fa-receipt"></i></i>Cetak Invoice</a>
                         </div>
                     </div>
 

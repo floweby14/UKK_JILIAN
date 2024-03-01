@@ -60,6 +60,18 @@
 
                                 <div class="input-group mb-3">
 
+                                    <input type="text" class="form-control" placeholder="Nomor Telepon" name="NomorTelepon" required>
+
+                                    <div class="input-group-append">
+
+                                        <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="input-group mb-3">
+
                                     <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
 
                                     <div class="input-group-append">

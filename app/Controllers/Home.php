@@ -113,10 +113,12 @@ class Home extends BaseController{
             $Schema = new Schema();
 
                 $username = $this->request->getPost('username');
+                $NomorTelepon = $this->request->getPost('NomorTelepon');
                 $password = $this->request->getPost('password');
 
             $user = array(
                 'username'=> $username,
+                'NomorTelepon'=> $NomorTelepon,
                 'password'=> md5($password),
                 'level'=> '2',
             );
